@@ -1,0 +1,2649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAET 1-B - Aviation Electronics Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ========== GLOBAL STYLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #00205B;
+            --sky-blue: #87CEEB;
+            --safety-yellow: #FFD700;
+            --gray: #F5F5F5;
+            --white: #FFFFFF;
+            --dark-gray: #333;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --admin-purple: #673AB7;
+            --reviewer-green: #2E7D32;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            background: linear-gradient(90deg, var(--navy) 0%, #003d82 100%);
+            color: var(--white);
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--safety-yellow);
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--safety-yellow);
+        }
+
+        .nav-links a.active {
+            background: rgba(255,255,255,0.15);
+            color: var(--safety-yellow);
+            border-bottom: 3px solid var(--safety-yellow);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--safety-yellow) 0%, #FFC700 100%);
+            color: var(--navy);
+            box-shadow: 0 4px 6px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy);
+        }
+
+        .admin-btn {
+            background: linear-gradient(135deg, var(--admin-purple) 0%, #512DA8 100%);
+            color: white;
+        }
+
+        .admin-btn:hover {
+            background: linear-gradient(135deg, #5E35B1 0%, #4527A0 100%);
+        }
+
+        .reviewer-btn {
+            background: linear-gradient(135deg, var(--reviewer-green) 0%, #1B5E20 100%);
+            color: white;
+        }
+
+        .reviewer-btn:hover {
+            background: linear-gradient(135deg, #388E3C 0%, #2E7D32 100%);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #004a99 100%);
+            color: var(--white);
+            padding: 5rem 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .motto {
+            font-size: 1.8rem;
+            color: var(--safety-yellow);
+            margin-bottom: 2rem;
+            font-style: italic;
+            animation: fadeInUp 1s 0.5s both;
+            font-weight: 300;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            min-width: 150px;
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--safety-yellow);
+            display: block;
+        }
+
+        /* ========== CONTENT SECTIONS ========== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        .section {
+            background: var(--white);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .section:hover {
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+
+        .section h2 {
+            color: var(--navy);
+            margin-bottom: 1.8rem;
+            font-size: 2.2rem;
+            border-bottom: 4px solid var(--safety-yellow);
+            padding-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ========== LOGIN MODAL ========== */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .login-modal.active {
+            display: flex;
+        }
+
+        .login-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .login-form h2 {
+            color: var(--navy);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e5eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--sky-blue);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(135, 206, 235, 0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+            background: none;
+            border: none;
+        }
+
+        /* ========== DASHBOARD & CARDS ========== */
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .dashboard-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--safety-yellow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+        }
+
+        .dashboard-card.reviewer {
+            border-top-color: var(--reviewer-green);
+        }
+
+        .dashboard-card.career {
+            border-top-color: var(--navy);
+        }
+
+        .dashboard-card.projects {
+            border-top-color: #9C27B0;
+        }
+
+        /* ========== REVIEWER SECTION ========== */
+        .reviewer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .reviewer-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--reviewer-green);
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .reviewer-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .reviewer-card h4 {
+            color: var(--reviewer-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .reviewer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--reviewer-green);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .reviewer-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== CAREER PATHWAY ========== */
+        .career-path {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--navy) 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .career-step {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .career-step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--safety-yellow);
+        }
+
+        .career-arrow {
+            font-size: 2rem;
+            color: var(--safety-yellow);
+            opacity: 0.7;
+        }
+
+        /* ========== PROJECT GALLERY ========== */
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #E3F2FD;
+            color: #1976D2;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ========== ADMIN PANEL ========== */
+        .admin-panel {
+            display: none;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-header {
+            background: linear-gradient(90deg, var(--admin-purple) 0%, #512DA8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .admin-nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .admin-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .admin-nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .admin-nav a.active {
+            background: var(--admin-purple);
+            color: white;
+        }
+
+        .admin-nav a:hover:not(.active) {
+            background: #f0f0f0;
+        }
+
+        .admin-content {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .admin-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 1rem;
+        }
+
+        .admin-table th {
+            background: var(--admin-purple);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .admin-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .admin-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            padding: 0.25rem 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .edit-btn {
+            background: #2196F3;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        /* ========== COURSE TABLE ========== */
+        .course-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .course-table th {
+            background: var(--navy);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .course-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .course-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        /* ========== TOAST NOTIFICATIONS ========== */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 3000;
+        }
+
+        .toast {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: slideInRight 0.3s, fadeOut 0.3s 4s forwards;
+            border-left: 5px solid var(--success);
+        }
+
+        .toast.error {
+            border-left-color: var(--danger);
+        }
+
+        .toast.info {
+            border-left-color: #17a2b8;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .motto {
+                font-size: 1.2rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .admin-nav ul {
+                flex-direction: column;
+            }
+            
+            .career-path {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .career-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- STUDENT WEBSITE -->
+    <div id="studentWebsite">
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <div class="logo-icon">✈️</div>
+                    <span>AAET 1-B</span>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" class="active" onclick="showPage('home')"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="showPage('mission')"><i class="fas fa-bullseye"></i> Mission</a></li>
+                    <li><a href="#" onclick="showPage('portal')"><i class="fas fa-tachometer-alt"></i> Portal</a></li>
+                    <li><a href="#" onclick="showPage('academics')"><i class="fas fa-book"></i> Academics</a></li>
+                    <li><a href="#" onclick="showPage('projects')"><i class="fas fa-flask"></i> Projects</a></li>
+                    <li><a href="#" onclick="showPage('career')"><i class="fas fa-briefcase"></i> Career</a></li>
+                    <li><a href="#" onclick="showPage('reviewer')"><i class="fas fa-graduation-cap"></i> Reviewer</a></li>
+                    <li><a href="#" onclick="showPage('resources')"><i class="fas fa-folder"></i> Resources</a></li>
+                </ul>
+                <div class="user-info">
+                    <div id="welcomeMsg" style="display:none; color: var(--white);">
+                        <span id="userName"></span>
+                    </div>
+                    <button class="btn btn-primary" id="loginBtn" onclick="showLoginModal()">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <button class="btn admin-btn" onclick="showAdminLogin()">
+                        <i class="fas fa-lock"></i> Admin
+                    </button>
+                    <button class="btn btn-secondary" id="logoutBtn" style="display:none;" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Student Login Modal -->
+        <div class="login-modal" id="loginModal">
+            <div class="login-form">
+                <button class="close-modal" onclick="closeLoginModal()">×</button>
+                <h2><i class="fas fa-user-graduate"></i> Student Login</h2>
+                <form onsubmit="studentLogin(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-id-card"></i> Student ID</label>
+                        <input type="text" id="studentId" required placeholder="Enter your Student ID">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-key"></i> Password</label>
+                        <input type="password" id="studentPassword" required placeholder="Enter your password">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label>
+                            <input type="checkbox" id="rememberMe"> Remember me
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Login Modal -->
+        <div class="login-modal" id="adminLoginModal">
+            <div class="login-form">
+                <button class="close-modal" onclick="closeAdminLoginModal()">×</button>
+                <h2><i class="fas fa-lock"></i> Admin Login</h2>
+                <form onsubmit="adminLogin(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user-shield"></i> Admin Username</label>
+                        <input type="text" id="adminUsername" required placeholder="Enter admin username">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-key"></i> Admin Password</label>
+                        <input type="password" id="adminPassword" required placeholder="Enter admin password">
+                    </div>
+                    <button type="submit" class="btn admin-btn" style="width:100%;">
+                        <i class="fas fa-sign-in-alt"></i> Login as Admin
+                    </button>
+                    <p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                        <strong>Default Admin:</strong> admin / admin123
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent">
+            <!-- Home Page -->
+            <div class="page" id="homePage">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1>AAET 1-B Section</h1>
+                        <p class="motto">"Wiring the Skies of Tomorrow"</p>
+                        <p>Associate in Aviation Electronics Technology<br>Basa-Palmayo Campus</p>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number" id="studentCount">45</div>
+                                <div>Active Students</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">12</div>
+                                <div>Core Courses</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">500+</div>
+                                <div>Lab Hours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-bullhorn"></i> Latest Announcements</h3>
+                            <div id="announcementsList">
+                                <!-- Announcements will be loaded here -->
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-calendar-alt"></i> Upcoming Events</h3>
+                            <div id="eventsList">
+                                <!-- Events will be loaded here -->
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-download"></i> Recent Files</h3>
+                            <div id="recentFiles">
+                                <!-- Files will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission Page -->
+            <div class="page" id="missionPage" style="display:none;">
+                <div class="container">
+                    <div class="section">
+                        <h2><i class="fas fa-bullseye"></i> Our Mission & Vision</h2>
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-rocket"></i> Mission Statement</h3>
+                            <p style="font-size:1.2rem; line-height:1.8; padding:1.5rem; background:linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius:10px;">
+                                <strong>"To graduate as competent, safety-oriented, and licensed Avionics Technicians progressing to Aircraft Maintenance Specialists, ready to excel in the global aviation industry."</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2><i class="fas fa-route"></i> Career Pathway</h2>
+                        <div class="career-path">
+                            <div class="career-step">
+                                <div class="career-step-icon"><i class="fas fa-graduation-cap"></i></div>
+                                <h3>AAET Graduate</h3>
+                                <p>Technical Foundation</p>
+                                <small>Year 1-2</small>
+                            </div>
+                            <div class="career-arrow">→</div>
+                            <div class="career-step">
+                                <div class="career-step-icon"><i class="fas fa-tools"></i></div>
+                                <h3>Avionics Technician</h3>
+                                <p>Entry Level</p>
+                                <small>0-2 Years Experience</small>
+                            </div>
+                            <div class="career-arrow">→</div>
+                            <div class="career-step">
+                                <div class="career-step-icon"><i class="fas fa-certificate"></i></div>
+                                <h3>Licensed Technician</h3>
+                                <p>CAAP/EASA Certified</p>
+                                <small>2-5 Years Experience</small>
+                            </div>
+                            <div class="career-arrow">→</div>
+                            <div class="career-step">
+                                <div class="career-step-icon"><i class="fas fa-user-tie"></i></div>
+                                <h3>Aircraft Maintenance Specialist</h3>
+                                <p>Senior Position</p>
+                                <small>5+ Years Experience</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2><i class="fas fa-history"></i> Our Journey Timeline</h2>
+                        <div style="padding: 2rem; background: white; border-radius: 10px; margin-top: 1rem;">
+                            <div style="position: relative; padding-left: 30px; border-left: 3px solid var(--sky-blue);">
+                                <div style="margin-bottom: 2rem; position: relative;">
+                                    <div style="position: absolute; left: -36px; top: 0; background: var(--safety-yellow); width: 10px; height: 10px; border-radius: 50%;"></div>
+                                    <h3 style="color: var(--navy);">2023 - Program Launch</h3>
+                                    <p>AAET 1-B section inaugurated with pioneering batch of 45 students</p>
+                                </div>
+                                <div style="margin-bottom: 2rem; position: relative;">
+                                    <div style="position: absolute; left: -36px; top: 0; background: var(--safety-yellow); width: 10px; height: 10px; border-radius: 50%;"></div>
+                                    <h3 style="color: var(--navy);">2024 - Lab Commissioning</h3>
+                                    <p>State-of-the-art avionics laboratory equipped with modern equipment</p>
+                                </div>
+                                <div style="margin-bottom: 2rem; position: relative;">
+                                    <div style="position: absolute; left: -36px; top: 0; background: var(--safety-yellow); width: 10px; height: 10px; border-radius: 50%;"></div>
+                                    <h3 style="color: var(--navy);">2025 - Industry Partnerships</h3>
+                                    <p>Signed MOUs with Philippine Airlines and Lufthansa Technik</p>
+                                </div>
+                                <div style="position: relative;">
+                                    <div style="position: absolute; left: -36px; top: 0; background: var(--safety-yellow); width: 10px; height: 10px; border-radius: 50%;"></div>
+                                    <h3 style="color: var(--navy);">2026 - First Graduation</h3>
+                                    <p>First batch of graduates ready for CAAP licensure examinations</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Portal Page -->
+            <div class="page dashboard" id="portalPage" style="display:none;">
+                <div class="container">
+                    <div class="section">
+                        <h2><i class="fas fa-user-circle"></i> Student Portal</h2>
+                        <div id="portalContent">
+                            <!-- Will be loaded when student logs in -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academics Page -->
+            <div class="page" id="academicsPage" style="display:none;">
+                <div class="container">
+                    <div class="section">
+                        <h2><i class="fas fa-book-open"></i> Academic Program</h2>
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-clipboard-list"></i> Program Overview</h3>
+                            <p>The Associate in Aviation Electronics Technology (AAET) program is a 2-year course designed to produce competent avionics technicians. The curriculum combines theoretical knowledge with hands-on training in aircraft electrical systems, digital electronics, and avionics systems.</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2><i class="fas fa-calendar-alt"></i> Course Schedule</h2>
+                        <table class="course-table">
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Title</th>
+                                    <th>Units</th>
+                                    <th>Schedule</th>
+                                    <th>Instructor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>AAET 101</td>
+                                    <td>Aircraft Electrical Systems</td>
+                                    <td>3</td>
+                                    <td>MWF 8:00-10:00</td>
+                                    <td>Prof. Santos</td>
+                                </tr>
+                                <tr>
+                                    <td>AAET 102</td>
+                                    <td>Digital Electronics</td>
+                                    <td>3</td>
+                                    <td>TTH 10:00-12:00</td>
+                                    <td>Engr. Cruz</td>
+                                </tr>
+                                <tr>
+                                    <td>AAET 103</td>
+                                    <td>Avionics Systems</td>
+                                    <td>3</td>
+                                    <td>MWF 1:00-3:00</td>
+                                    <td>Prof. Reyes</td>
+                                </tr>
+                                <tr>
+                                    <td>AAET 104</td>
+                                    <td>Aircraft Instruments</td>
+                                    <td>3</td>
+                                    <td>TTH 1:00-3:00</td>
+                                    <td>Prof. Gonzales</td>
+                                </tr>
+                                <tr>
+                                    <td>AAET 105</td>
+                                    <td>Communication & Navigation Systems</td>
+                                    <td>3</td>
+                                    <td>F 8:00-12:00</td>
+                                    <td>Engr. Torres</td>
+                                </tr>
+                                <tr>
+                                    <td>AAET 106</td>
+                                    <td>Avionics Lab 1</td>
+                                    <td>2</td>
+                                    <td>W 8:00-12:00</td>
+                                    <td>Prof. Reyes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="section">
+                        <h2><i class="fas fa-chalkboard-teacher"></i> Faculty Directory</h2>
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-user-tie"></i> Prof. Maria Santos</h3>
+                                <p><strong>Specialization:</strong> Aircraft Electrical Systems</p>
+                                <p><strong>Education:</strong> M.S. Electrical Engineering</p>
+                                <p><strong>Experience:</strong> 15 years in aviation industry</p>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-user-tie"></i> Engr. Juan Cruz</h3>
+                                <p><strong>Specialization:</strong> Digital Electronics</p>
+                                <p><strong>Education:</strong> B.S. Electronics Engineering</p>
+                                <p><strong>Experience:</strong> Former PAL Avionics Technician</p>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-user-tie"></i> Prof. Ana Reyes</h3>
+                                <p><strong>Specialization:</strong> Avionics Systems</p>
+                                <p><strong>Education:</strong> Ph.D. Aerospace Engineering</p>
+                                <p><strong>Experience:</strong> 20 years teaching experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Page -->
+            <div class="page" id="projectsPage" style="display:none;">
+                <div class="container">
+                    <div class="section">
+                        <h2><i class="fas fa-flask"></i> Laboratory Projects</h2>
+                        <p>Our students work on real-world avionics projects throughout the program. Here are some featured projects:</p>
+                        
+                        <div class="project-gallery">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <i class="fas fa-satellite-dish"></i>
+                                </div>
+                                <div class="project-content">
+                                    <span class="project-tag">Communication Systems</span>
+                                    <h3>Aircraft Communication System</h3>
+                                    <p>Design and implementation of VHF communication system with emergency backup</p>
+                                    <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 0.9rem; color: #666;">Team Alpha</span>
+                                        <span style="font-size: 0.9rem; color: #4CAF50;">Completed</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <i class="fas fa-compass"></i>
+                                </div>
+                                <div class="project-content">
+                                    <span class="project-tag">Navigation Systems</span>
+                                    <h3>GPS Navigation Module</h3>
+                                    <p>Development of GPS-based navigation system with moving map display</p>
+                                    <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 0.9rem; color: #666;">Team Bravo</span>
+                                        <span style="font-size: 0.9rem; color: #FF9800;">In Progress</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div class="project-content">
+                                    <span class="project-tag">Electrical Systems</span>
+                                    <h3>Aircraft Lighting System</h3>
+                                    <p>Complete aircraft lighting circuit with emergency power backup</p>
+                                    <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 0.9rem; color: #666;">Team Charlie</span>
+                                        <span style="font-size: 0.9rem; color: #4CAF50;">Completed</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                <div class="project-content">
+                                    <span class="project-tag">Instrumentation</span>
+                                    <h3>Flight Instrument Mockup</h3>
+                                    <p>Replica of aircraft instrument panel with working gauges and displays</p>
+                                    <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 0.9rem; color: #666;">Team Delta</span>
+                                        <span style="font-size: 0.9rem; color: #2196F3;">Planning</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2><i class="fas fa-tools"></i> Laboratory Equipment</h2>
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-microchip"></i> Digital Systems Lab</h3>
+                                <ul style="list-style-position: inside; margin-top: 1rem;">
+                                    <li>Digital oscilloscopes</li>
+                                    <li>Function generators</li>
+                                    <li>Logic analyzers</li>
+                                    <li>Soldering stations</li>
+                                </ul>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-bolt"></i> Electrical Systems Lab</h3>
+                                <ul style="list-style-position: inside; margin-top: 1rem;">
+                                    <li>Aircraft wiring simulators</li>
+                                    <li>Power supply units</li>
+                                    <li>Circuit test benches</li>
+                                    <li>Multimeters and testers</li>
+                                </ul>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-satellite"></i> Avionics Lab</h3>
+                                <ul style="list-style-position: inside; margin-top: 1rem;">
+                                    <li>Communication systems trainers</li>
+                                    <li>Navigation equipment mockups</li>
+                                    <li>Flight instrument panels</li>
+                                    <li>Troubleshooting stations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Career Page -->
+            <div class="page" id="careerPage" style="display:none;">
+                <div class="container">
+                    <div class="section">
+                        <h2><i class="fas fa-briefcase"></i> Career Opportunities</h2>
+                        <div class="dashboard-card career">
+                            <h3><i class="fas fa-plane"></i> Aviation Industry Careers</h3>
+                            <p>AAET graduates are in high demand in various sectors of the aviation industry. Here are the top career paths:</p>
+                            
+                            <div style="margin-top: 1.5rem;">
+                                <h4 style="color: var(--navy);">Airlines</h4>
+                                <p>Philippine Airlines, Cebu Pacific, AirAsia - Avionics Technicians, Line Maintenance Technicians</p>
+                                
+                                <h4 style="color: var(--navy); margin-top: 1rem;">MRO Companies</h4>
+                                <p>Lufthansa Technik, SIA Engineering - Aircraft Maintenance Specialists</p>
+                                
+                                <h4 style="color: var(--navy); margin-top: 1rem;">Aviation Authorities</h4>
+                                <p>CAAP (Civil Aviation Authority of the Philippines) - Aviation Safety Inspectors</p>
+                                
+                                <h4 style="color: var(--navy); margin-top: 1rem;">General Aviation</h4>
+                                <p>Private aircraft maintenance, corporate aviation services</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2><i class="fas fa-money-bill-wave"></i> Salary Expectations</h2>
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-user-graduate"></i> Entry Level</h3>
+                                <div style="font-size: 2rem; color: var(--success); font-weight: bold; text-align: center; margin: 1rem 0;">
+                                    ₱25,000 - ₱35,000
+                                </div>
+                                <p style="text-align: center;">Fresh graduates / Trainee positions</p>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-user-tie"></i> Licensed Technician</h3>
+                                <div style="font-size: 2rem; color: var(--success); font-weight: bold; text-align: center; margin: 1rem 0;">
+                                    ₱45,000 - ₱65,000
+                                </div>
+                                <p style="text-align: center;">CAAP Licensed (2-5 years experience)</p>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-user-cog"></i> Senior Specialist</h3>
+                                <div style="font-size: 2rem; color: var(--success); font-weight: bold; text-align: center; margin: 1rem 0;">
+                                    ₱70,000 - ₱120,000
+                                </div>
+                                <p style="text-align: center;">Lead Technician / Supervisor (5+ years)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2><i class="fas fa-certificate"></i> Required Certifications</h2>
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-passport"></i> CAAP License</h3>
+                                <p><strong>Civil Aviation Authority of the Philippines</strong></p>
+                                <p>Aircraft Maintenance Technician License (AMT)</p>
+                                <p style="margin-top: 1rem;"><small>Requirements: AAET diploma + 2 years experience + CAAP examination</small></p>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-globe-europe"></i> EASA Part-66</h3>
+                                <p><strong>European Aviation Safety Agency</strong></p>
+                                <p>Category B1 (Mechanical) / B2 (Avionics)</p>
+                                <p style="margin-top: 1rem;"><small>Requirements: Specific training modules + examination</small></p>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-flag-usa"></i> FAA A&P</h3>
+                                <p><strong>Federal Aviation Administration</strong></p>
+                                <p>Airframe & Powerplant Certificate</p>
+                                <p style="margin-top: 1rem;"><small>Requirements: 18 months experience + written/oral/practical exams</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviewer Page -->
+            <div class="page" id="reviewerPage" style="display:none;">
+                <div class="container">
+                    <div class="section">
+                        <h2><i class="fas fa-graduation-cap"></i> Online Reviewers & Resources</h2>
+                        <p style="margin-bottom: 1.5rem;">Access our collection of online reviewers, practice tests, and study materials to prepare for your exams and certifications.</p>
+                        
+                        <button class="btn reviewer-btn" onclick="showAddReviewerModal()" style="margin-bottom: 1.5rem;">
+                            <i class="fas fa-plus"></i> Add Reviewer Link (Admin)
+                        </button>
+                        
+                        <div class="reviewer-grid" id="reviewerLinks">
+                            <!-- Reviewer links will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2><i class="fas fa-video"></i> Video Tutorials</h2>
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card reviewer">
+                                <h3><i class="fab fa-youtube"></i> YouTube Channels</h3>
+                                <div style="margin-top: 1rem;">
+                                    <a href="https://www.youtube.com/@AviationPro" target="_blank" class="reviewer-link">
+                                        <i class="fas fa-external-link-alt"></i> Aviation Pro
+                                    </a>
+                                    <p>Comprehensive aviation tutorials and walkthroughs</p>
+                                </div>
+                                <div style="margin-top: 1rem;">
+                                    <a href="https://www.youtube.com/@AvionicsTech" target="_blank" class="reviewer-link">
+                                        <i class="fas fa-external-link-alt"></i> Avionics Tech
+                                    </a>
+                                    <p>Avionics systems explanations and troubleshooting</p>
+                                </div>
+                            </div>
+                            
+                            <div class="dashboard-card reviewer">
+                                <h3><i class="fas fa-file-video"></i> Recorded Lectures</h3>
+                                <div style="margin-top: 1rem;">
+                                    <a href="#" onclick="showToast('Accessing recorded lectures...', 'info')" class="reviewer-link">
+                                        <i class="fas fa-play-circle"></i> Aircraft Electrical Systems
+                                    </a>
+                                    <p>Complete lecture series by Prof. Santos</p>
+                                </div>
+                                <div style="margin-top: 1rem;">
+                                    <a href="#" onclick="showToast('Accessing recorded lectures...', 'info')" class="reviewer-link">
+                                        <i class="fas fa-play-circle"></i> Digital Electronics
+                                    </a>
+                                    <p>Video lectures with practical demonstrations</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2><i class="fas fa-question-circle"></i> Practice Tests</h2>
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-file-alt"></i> CAAP Sample Exams</h3>
+                                <p>Practice questions for Aircraft Maintenance Technician License</p>
+                                <button class="btn btn-primary" onclick="openReviewerLink('caap_practice')" style="margin-top: 1rem;">
+                                    <i class="fas fa-external-link-alt"></i> Take Practice Test
+                                </button>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-globe"></i> EASA Part-66 Questions</h3>
+                                <p>European certification practice questions database</p>
+                                <button class="btn btn-primary" onclick="openReviewerLink('easa_practice')" style="margin-top: 1rem;">
+                                    <i class="fas fa-external-link-alt"></i> Access Questions
+                                </button>
+                            </div>
+                            <div class="dashboard-card">
+                                <h3><i class="fas fa-flag-usa"></i> FAA A&P Practice</h3>
+                                <p>Sample tests for Airframe & Powerplant certification</p>
+                                <button class="btn btn-primary" onclick="openReviewerLink('faa_practice')" style="margin-top: 1rem;">
+                                    <i class="fas fa-external-link-alt"></i> Start Practice
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Page -->
+            <div class="page" id="resourcesPage" style="display:none;">
+                <div class="container">
+                    <div class="section">
+                        <h2><i class="fas fa-folder-open"></i> Resources & Downloads</h2>
+                        <div id="resourcesContent">
+                            <!-- Will be loaded from localStorage -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <div>
+                <h2>✈️ AAET 1-B Admin Panel</h2>
+                <small>Basa-Palmayo Campus</small>
+            </div>
+            <div>
+                <span>Welcome, Admin</span>
+                <button class="btn admin-btn" onclick="logoutAdmin()" style="margin-left: 1rem;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="admin-nav">
+            <ul>
+                <li><a href="#" class="active" onclick="showAdminTab('dashboard')">Dashboard</a></li>
+                <li><a href="#" onclick="showAdminTab('students')">Students</a></li>
+                <li><a href="#" onclick="showAdminTab('announcements')">Announcements</a></li>
+                <li><a href="#" onclick="showAdminTab('events')">Events</a></li>
+                <li><a href="#" onclick="showAdminTab('files')">Files</a></li>
+                <li><a href="#" onclick="showAdminTab('reviewers')">Reviewers</a></li>
+                <li><a href="#" onclick="showAdminTab('settings')">Settings</a></li>
+            </ul>
+        </div>
+
+        <div class="admin-content">
+            <!-- Dashboard Tab -->
+            <div class="admin-tab" id="dashboardTab">
+                <div class="admin-section">
+                    <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <h3>Total Students</h3>
+                            <div class="stat-number" id="adminStudentCount">0</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Total Files</h3>
+                            <div class="stat-number" id="adminFileCount">0</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Active Announcements</h3>
+                            <div class="stat-number" id="adminAnnouncementCount">0</div>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Reviewer Links</h3>
+                            <div class="stat-number" id="adminReviewerCount">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students Tab -->
+            <div class="admin-tab" id="studentsTab" style="display:none;">
+                <div class="admin-section">
+                    <h2><i class="fas fa-users"></i> Student Management</h2>
+                    <button class="btn btn-primary" onclick="showAddStudentModal()">
+                        <i class="fas fa-user-plus"></i> Add New Student
+                    </button>
+                    <div class="table-container" style="margin-top: 1rem;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Year</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsTable">
+                                <!-- Students will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Announcements Tab -->
+            <div class="admin-tab" id="announcementsTab" style="display:none;">
+                <div class="admin-section">
+                    <h2><i class="fas fa-bullhorn"></i> Announcements</h2>
+                    <button class="btn btn-primary" onclick="showAddAnnouncementModal()">
+                        <i class="fas fa-plus"></i> Add Announcement
+                    </button>
+                    <div class="table-container" style="margin-top: 1rem;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Title</th>
+                                    <th>Content</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="announcementsTable">
+                                <!-- Announcements will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Tab -->
+            <div class="admin-tab" id="eventsTab" style="display:none;">
+                <div class="admin-section">
+                    <h2><i class="fas fa-calendar-alt"></i> Events</h2>
+                    <button class="btn btn-primary" onclick="showAddEventModal()">
+                        <i class="fas fa-plus"></i> Add Event
+                    </button>
+                    <div class="table-container" style="margin-top: 1rem;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="eventsTable">
+                                <!-- Events will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Files Tab -->
+            <div class="admin-tab" id="filesTab" style="display:none;">
+                <div class="admin-section">
+                    <h2><i class="fas fa-folder"></i> File Management</h2>
+                    <button class="btn btn-primary" onclick="showAddFileModal()">
+                        <i class="fas fa-upload"></i> Upload File
+                    </button>
+                    <div class="table-container" style="margin-top: 1rem;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Type</th>
+                                    <th>Size</th>
+                                    <th>Upload Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="filesTable">
+                                <!-- Files will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviewers Tab -->
+            <div class="admin-tab" id="reviewersTab" style="display:none;">
+                <div class="admin-section">
+                    <h2><i class="fas fa-graduation-cap"></i> Reviewer Management</h2>
+                    <button class="btn btn-primary" onclick="showAddReviewerModal()">
+                        <i class="fas fa-plus"></i> Add Reviewer Link
+                    </button>
+                    <div class="table-container" style="margin-top: 1rem;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>URL</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reviewersTable">
+                                <!-- Reviewers will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="admin-tab" id="settingsTab" style="display:none;">
+                <div class="admin-section">
+                    <h2><i class="fas fa-cog"></i> Site Settings</h2>
+                    <div style="margin-bottom: 2rem;">
+                        <h3>Homepage Statistics</h3>
+                        <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                            <div>
+                                <label>Student Count</label>
+                                <input type="number" id="settingStudentCount" class="form-control" style="width:100%;">
+                            </div>
+                            <div>
+                                <label>Course Count</label>
+                                <input type="number" id="settingCourseCount" class="form-control" style="width:100%;">
+                            </div>
+                            <div>
+                                <label>Lab Hours</label>
+                                <input type="text" id="settingLabHours" class="form-control" style="width:100%;">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSettings()" style="margin-top: 1rem;">
+                            <i class="fas fa-save"></i> Save Settings
+                        </button>
+                    </div>
+
+                    <div>
+                        <h3>Backup & Restore</h3>
+                        <button class="btn btn-primary" onclick="exportData()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                        <button class="btn btn-secondary" onclick="importData()" style="margin-left: 1rem;">
+                            <i class="fas fa-upload"></i> Import Data
+                        </button>
+                        <input type="file" id="importFile" style="display:none;" accept=".json" onchange="handleImport(this.files)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <div class="login-modal" id="addStudentModal">
+        <div class="login-form">
+            <button class="close-modal" onclick="closeModal('addStudentModal')">×</button>
+            <h2><i class="fas fa-user-plus"></i> Add Student</h2>
+            <form onsubmit="addStudent(event)">
+                <div class="form-group">
+                    <label>Student ID</label>
+                    <input type="text" id="newStudentId" required placeholder="AAET-2024-001">
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="newStudentName" required placeholder="Juan Dela Cruz">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="newStudentEmail" required placeholder="student@institution.edu.ph">
+                </div>
+                <div class="form-group">
+                    <label>Year Level</label>
+                    <select id="newStudentYear" required class="form-control" style="width:100%; padding:1rem;">
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="newStudentPassword" required placeholder="Create password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">
+                    <i class="fas fa-save"></i> Add Student
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="login-modal" id="addAnnouncementModal">
+        <div class="login-form">
+            <button class="close-modal" onclick="closeModal('addAnnouncementModal')">×</button>
+            <h2><i class="fas fa-bullhorn"></i> Add Announcement</h2>
+            <form onsubmit="addAnnouncement(event)">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="announcementTitle" required placeholder="Enter announcement title">
+                </div>
+                <div class="form-group">
+                    <label>Content</label>
+                    <textarea id="announcementContent" required rows="4" style="width:100%; padding:1rem; border:2px solid #e1e5eb; border-radius:10px;" placeholder="Enter announcement content"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">
+                    <i class="fas fa-save"></i> Add Announcement
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="login-modal" id="addEventModal">
+        <div class="login-form">
+            <button class="close-modal" onclick="closeModal('addEventModal')">×</button>
+            <h2><i class="fas fa-calendar-plus"></i> Add Event</h2>
+            <form onsubmit="addEvent(event)">
+                <div class="form-group">
+                    <label>Event Title</label>
+                    <input type="text" id="eventTitle" required placeholder="Enter event title">
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="eventDate" required style="width:100%; padding:1rem;">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="eventDescription" required rows="3" style="width:100%; padding:1rem; border:2px solid #e1e5eb; border-radius:10px;" placeholder="Enter event description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">
+                    <i class="fas fa-save"></i> Add Event
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="login-modal" id="addFileModal">
+        <div class="login-form">
+            <button class="close-modal" onclick="closeModal('addFileModal')">×</button>
+            <h2><i class="fas fa-upload"></i> Upload File</h2>
+            <form onsubmit="addFile(event)">
+                <div class="form-group">
+                    <label>File Name</label>
+                    <input type="text" id="fileName" required placeholder="Enter file name">
+                </div>
+                <div class="form-group">
+                    <label>File Type</label>
+                    <select id="fileType" required class="form-control" style="width:100%; padding:1rem;">
+                        <option value="pdf">PDF Document</option>
+                        <option value="doc">Word Document</option>
+                        <option value="ppt">PowerPoint</option>
+                        <option value="image">Image</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>File URL/Link</label>
+                    <input type="text" id="fileUrl" required placeholder="Enter file URL or Google Drive link">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="fileDescription" rows="3" style="width:100%; padding:1rem; border:2px solid #e1e5eb; border-radius:10px;" placeholder="Optional description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">
+                    <i class="fas fa-upload"></i> Upload File
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="login-modal" id="addReviewerModal">
+        <div class="login-form">
+            <button class="close-modal" onclick="closeModal('addReviewerModal')">×</button>
+            <h2><i class="fas fa-link"></i> Add Reviewer Link</h2>
+            <form onsubmit="addReviewerLink(event)">
+                <div class="form-group">
+                    <label>Reviewer Title</label>
+                    <input type="text" id="reviewerTitle" required placeholder="e.g., CAAP Practice Exam 2024">
+                </div>
+                <div class="form-group">
+                    <label>URL/Link</label>
+                    <input type="url" id="reviewerUrl" required placeholder="https://example.com/reviewer">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="reviewerCategory" required class="form-control" style="width:100%; padding:1rem;">
+                        <option value="caap">CAAP License</option>
+                        <option value="easa">EASA Part-66</option>
+                        <option value="faa">FAA A&P</option>
+                        <option value="general">General Review</option>
+                        <option value="video">Video Tutorial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="reviewerDescription" rows="3" style="width:100%; padding:1rem; border:2px solid #e1e5eb; border-radius:10px;" placeholder="Brief description of the reviewer"></textarea>
+                </div>
+                <button type="submit" class="btn reviewer-btn" style="width:100%;">
+                    <i class="fas fa-save"></i> Add Reviewer Link
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ============ DATA STORAGE ============
+        // All data is stored in localStorage for cross-device compatibility
+        
+        let currentUser = null;
+        let isAdmin = false;
+        
+        // Initialize data if not exists
+        function initializeData() {
+            // Admin credentials (Change these!)
+            if (!localStorage.getItem('admin_credentials')) {
+                localStorage.setItem('admin_credentials', JSON.stringify({
+                    username: 'admin',
+                    password: 'admin123'
+                }));
+            }
+            
+            // Students data
+            if (!localStorage.getItem('aaet_students')) {
+                localStorage.setItem('aaet_students', JSON.stringify([
+                    {
+                        id: 'AAET-2024-001',
+                        name: 'Juan Dela Cruz',
+                        email: 'jd2024@institution.edu.ph',
+                        year: '1',
+                        password: 'student123'
+                    },
+                    {
+                        id: 'AAET-2024-002',
+                        name: 'Maria Santos',
+                        email: 'ms2024@institution.edu.ph',
+                        year: '1',
+                        password: 'student123'
+                    }
+                ]));
+            }
+            
+            // Announcements data
+            if (!localStorage.getItem('aaet_announcements')) {
+                localStorage.setItem('aaet_announcements', JSON.stringify([
+                    {
+                        id: 1,
+                        title: 'Welcome to AAET 1-B',
+                        content: 'Welcome to the new academic year! All students must attend the orientation on January 15.',
+                        date: new Date().toISOString().split('T')[0],
+                        active: true
+                    },
+                    {
+                        id: 2,
+                        title: 'Lab Safety Training',
+                        content: 'Mandatory lab safety training will be conducted next week. Attendance is required.',
+                        date: new Date().toISOString().split('T')[0],
+                        active: true
+                    }
+                ]));
+            }
+            
+            // Events data
+            if (!localStorage.getItem('aaet_events')) {
+                localStorage.setItem('aaet_events', JSON.stringify([
+                    {
+                        id: 1,
+                        title: 'Orientation Day',
+                        date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                        description: 'Welcome orientation for all AAET 1-B students'
+                    },
+                    {
+                        id: 2,
+                        title: 'Lab Safety Training',
+                        date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                        description: 'Mandatory safety training in Lab 101'
+                    }
+                ]));
+            }
+            
+            // Files data
+            if (!localStorage.getItem('aaet_files')) {
+                localStorage.setItem('aaet_files', JSON.stringify([
+                    {
+                        id: 1,
+                        name: 'Course Syllabus.pdf',
+                        type: 'pdf',
+                        url: 'https://drive.google.com/',
+                        description: 'Complete course syllabus for Semester 1',
+                        date: new Date().toISOString().split('T')[0],
+                        size: '2.4 MB'
+                    },
+                    {
+                        id: 2,
+                        name: 'Lab Manual 2024.pdf',
+                        type: 'pdf',
+                        url: 'https://drive.google.com/',
+                        description: 'Laboratory manual for all experiments',
+                        date: new Date().toISOString().split('T')[0],
+                        size: '3.1 MB'
+                    }
+                ]));
+            }
+            
+            // Reviewers data
+            if (!localStorage.getItem('aaet_reviewers')) {
+                localStorage.setItem('aaet_reviewers', JSON.stringify([
+                    {
+                        id: 1,
+                        title: 'CAAP Practice Exam 2024',
+                        url: 'https://www.caap.gov.ph/exams/practice',
+                        category: 'caap',
+                        description: 'Official CAAP practice questions for Aircraft Maintenance Technician License'
+                    },
+                    {
+                        id: 2,
+                        title: 'EASA Part-66 Question Bank',
+                        url: 'https://www.easa.europa.eu/en/domains/aircrew-licensing/part-66-question-bank',
+                        category: 'easa',
+                        description: 'Official EASA Part-66 question database'
+                    },
+                    {
+                        id: 3,
+                        title: 'FAA A&P Test Guide',
+                        url: 'https://www.faa.gov/ame_guide/app_process/exam',
+                        category: 'faa',
+                        description: 'FAA Airframe & Powerplant certification test guide'
+                    }
+                ]));
+            }
+            
+            // Site settings
+            if (!localStorage.getItem('aaet_settings')) {
+                localStorage.setItem('aaet_settings', JSON.stringify({
+                    studentCount: '45',
+                    courseCount: '12',
+                    labHours: '500+'
+                }));
+            }
+            
+            // Load site settings
+            loadSiteSettings();
+        }
+        
+        // ============ TOAST NOTIFICATIONS ============
+        function showToast(message, type = 'success') {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icons = {
+                success: 'fas fa-check-circle',
+                error: 'fas fa-exclamation-circle',
+                info: 'fas fa-info-circle'
+            };
+            
+            toast.innerHTML = `
+                <i class="${icons[type]}" style="color: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : '#17a2b8'}"></i>
+                <span>${message}</span>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 4000);
+        }
+        
+        // ============ STUDENT LOGIN ============
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+        
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+        
+        function studentLogin(e) {
+            e.preventDefault();
+            
+            const studentId = document.getElementById('studentId').value;
+            const password = document.getElementById('studentPassword').value;
+            
+            const students = JSON.parse(localStorage.getItem('aaet_students') || '[]');
+            const student = students.find(s => s.id === studentId && s.password === password);
+            
+            if (student) {
+                currentUser = student;
+                updateUIForStudent();
+                closeLoginModal();
+                showToast(`Welcome, ${student.name}!`, 'success');
+                showPage('portal');
+            } else {
+                showToast('Invalid Student ID or Password', 'error');
+            }
+        }
+        
+        function updateUIForStudent() {
+            if (currentUser) {
+                document.getElementById('welcomeMsg').style.display = 'block';
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('loginBtn').style.display = 'none';
+                document.getElementById('logoutBtn').style.display = 'inline-flex';
+            }
+        }
+        
+        function logout() {
+            currentUser = null;
+            document.getElementById('welcomeMsg').style.display = 'none';
+            document.getElementById('loginBtn').style.display = 'inline-flex';
+            document.getElementById('logoutBtn').style.display = 'none';
+            showPage('home');
+            showToast('Logged out successfully', 'info');
+        }
+        
+        // ============ ADMIN LOGIN ============
+        function showAdminLogin() {
+            document.getElementById('adminLoginModal').classList.add('active');
+        }
+        
+        function closeAdminLoginModal() {
+            document.getElementById('adminLoginModal').classList.remove('active');
+        }
+        
+        function adminLogin(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            const adminCreds = JSON.parse(localStorage.getItem('admin_credentials'));
+            
+            if (username === adminCreds.username && password === adminCreds.password) {
+                isAdmin = true;
+                document.getElementById('studentWebsite').style.display = 'none';
+                document.getElementById('adminPanel').classList.add('active');
+                closeAdminLoginModal();
+                loadAdminDashboard();
+                showToast('Admin login successful!', 'success');
+            } else {
+                showToast('Invalid admin credentials', 'error');
+            }
+        }
+        
+        function logoutAdmin() {
+            isAdmin = false;
+            document.getElementById('studentWebsite').style.display = 'block';
+            document.getElementById('adminPanel').classList.remove('active');
+            showPage('home');
+            showToast('Admin logged out', 'info');
+        }
+        
+        // ============ PAGE NAVIGATION ============
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show requested page
+            const page = document.getElementById(pageId + 'Page');
+            if (page) {
+                page.style.display = 'block';
+                
+                // Add active class to nav link
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    if (link.getAttribute('onclick')?.includes(pageId)) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Load page content
+                loadPageContent(pageId);
+            }
+        }
+        
+        function loadPageContent(pageId) {
+            switch(pageId) {
+                case 'home':
+                    loadHomePage();
+                    break;
+                case 'mission':
+                    loadMissionPage();
+                    break;
+                case 'portal':
+                    if (!currentUser) {
+                        showToast('Please login to access portal', 'error');
+                        showLoginModal();
+                        showPage('home');
+                        return;
+                    }
+                    loadPortalPage();
+                    break;
+                case 'academics':
+                    loadAcademicsPage();
+                    break;
+                case 'projects':
+                    loadProjectsPage();
+                    break;
+                case 'career':
+                    loadCareerPage();
+                    break;
+                case 'reviewer':
+                    loadReviewerPage();
+                    break;
+                case 'resources':
+                    loadResourcesPage();
+                    break;
+            }
+        }
+        
+        function loadHomePage() {
+            // Load announcements
+            const announcements = JSON.parse(localStorage.getItem('aaet_announcements') || '[]').filter(a => a.active);
+            const announcementsList = document.getElementById('announcementsList');
+            announcementsList.innerHTML = announcements.slice(0, 3).map(announcement => `
+                <div style="padding: 1rem; background: var(--gray); border-radius: 8px; margin-bottom: 0.5rem;">
+                    <strong>${announcement.title}</strong><br>
+                    <small style="color: var(--navy);">${formatDate(announcement.date)}</small>
+                    <p style="margin-top: 0.5rem;">${announcement.content}</p>
+                </div>
+            `).join('');
+            
+            // Load events
+            const events = JSON.parse(localStorage.getItem('aaet_events') || '[]');
+            const eventsList = document.getElementById('eventsList');
+            eventsList.innerHTML = events.slice(0, 3).map(event => `
+                <div style="padding: 1rem; background: var(--gray); border-radius: 8px; margin-bottom: 0.5rem;">
+                    <strong>${event.title}</strong><br>
+                    <small style="color: var(--navy);">${formatDate(event.date)}</small>
+                    <p style="margin-top: 0.5rem;">${event.description}</p>
+                </div>
+            `).join('');
+            
+            // Load recent files
+            const files = JSON.parse(localStorage.getItem('aaet_files') || '[]');
+            const recentFiles = document.getElementById('recentFiles');
+            recentFiles.innerHTML = files.slice(0, 3).map(file => `
+                <div style="padding: 1rem; background: var(--gray); border-radius: 8px; margin-bottom: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-file-pdf" style="color: #f44336;"></i>
+                        <div>
+                            <strong>${file.name}</strong><br>
+                            <small>${file.size} • ${formatDate(file.date)}</small>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function loadMissionPage() {
+            // Already has static content
+        }
+        
+        function loadPortalPage() {
+            const portalContent = document.getElementById('portalContent');
+            portalContent.innerHTML = `
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-user"></i> Your Profile</h3>
+                        <p><strong>Student ID:</strong> ${currentUser.id}</p>
+                        <p><strong>Email:</strong> ${currentUser.email}</p>
+                        <p><strong>Year Level:</strong> ${currentUser.year === '1' ? '1st Year' : '2nd Year'}</p>
+                        <p><strong>Status:</strong> <span style="color: var(--success);">Active</span></p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-tasks"></i> Pending Assignments</h3>
+                        <div style="margin-top: 1rem;">
+                            <div style="padding: 0.8rem; border-left: 4px solid var(--warning); margin-bottom: 0.8rem;">
+                                <strong>Aircraft Systems Report</strong><br>
+                                <small>Due: Jan 25, 2024 | Status: In Progress</small>
+                            </div>
+                            <div style="padding: 0.8rem; border-left: 4px solid var(--info);">
+                                <strong>Circuit Design Project</strong><br>
+                                <small>Due: Feb 1, 2024 | Status: Not Started</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-calendar-check"></i> Today's Schedule</h3>
+                        <div style="margin-top: 1rem;">
+                            <div style="padding: 0.8rem; background: rgba(0, 32, 91, 0.05); border-radius: 8px; margin-bottom: 0.5rem;">
+                                <strong>8:00 AM - 10:00 AM</strong><br>
+                                <span>Aircraft Electrical Systems (Room 302)</span>
+                            </div>
+                            <div style="padding: 0.8rem; background: rgba(0, 32, 91, 0.05); border-radius: 8px;">
+                                <strong>1:00 PM - 4:00 PM</strong><br>
+                                <span>Avionics Lab Session (Lab 101)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function loadAcademicsPage() {
+            // Already has static content
+        }
+        
+        function loadProjectsPage() {
+            // Already has static content
+        }
+        
+        function loadCareerPage() {
+            // Already has static content
+        }
+        
+        function loadReviewerPage() {
+            const reviewers = JSON.parse(localStorage.getItem('aaet_reviewers') || '[]');
+            const reviewerLinks = document.getElementById('reviewerLinks');
+            
+            reviewerLinks.innerHTML = reviewers.map(reviewer => `
+                <div class="reviewer-card">
+                    <h4>${reviewer.title}</h4>
+                    <p>${reviewer.description}</p>
+                    <div style="margin-top: 0.5rem;">
+                        <span style="background: #E8F5E9; color: #2E7D32; padding: 0.25rem 0.5rem; border-radius: 3px; font-size: 0.8rem;">
+                            ${reviewer.category.toUpperCase()}
+                        </span>
+                    </div>
+                    <a href="${reviewer.url}" target="_blank" class="reviewer-link" style="margin-top: 0.5rem;">
+                        <i class="fas fa-external-link-alt"></i> Access Reviewer
+                    </a>
+                </div>
+            `).join('');
+        }
+        
+        function loadResourcesPage() {
+            const files = JSON.parse(localStorage.getItem('aaet_files') || '[]');
+            const resourcesContent = document.getElementById('resourcesContent');
+            
+            resourcesContent.innerHTML = `
+                <div class="dashboard-grid">
+                    ${files.map(file => `
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-file-${file.type === 'pdf' ? 'pdf' : file.type === 'doc' ? 'word' : 'alt'}"></i> ${file.name}</h3>
+                            <p>${file.description}</p>
+                            <p><small>${file.size} • ${formatDate(file.date)}</small></p>
+                            <button class="btn btn-primary" onclick="window.open('${file.url}', '_blank')" style="margin-top: 1rem;">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+        
+        function openReviewerLink(type) {
+            const reviewers = JSON.parse(localStorage.getItem('aaet_reviewers') || '[]');
+            const reviewer = reviewers.find(r => r.category === type);
+            
+            if (reviewer) {
+                window.open(reviewer.url, '_blank');
+            } else {
+                showToast('Reviewer link not found', 'info');
+            }
+        }
+        
+        // ============ ADMIN FUNCTIONS ============
+        function showAdminTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            
+            // Remove active class
+            document.querySelectorAll('.admin-nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId + 'Tab').style.display = 'block';
+            
+            // Add active class
+            document.querySelectorAll('.admin-nav a').forEach(link => {
+                if (link.textContent.toLowerCase().includes(tabId)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Load tab data
+            switch(tabId) {
+                case 'dashboard':
+                    loadAdminDashboard();
+                    break;
+                case 'students':
+                    loadStudentsTab();
+                    break;
+                case 'announcements':
+                    loadAnnouncementsTab();
+                    break;
+                case 'events':
+                    loadEventsTab();
+                    break;
+                case 'files':
+                    loadFilesTab();
+                    break;
+                case 'reviewers':
+                    loadReviewersTab();
+                    break;
+            }
+        }
+        
+        function loadAdminDashboard() {
+            const students = JSON.parse(localStorage.getItem('aaet_students') || '[]');
+            const files = JSON.parse(localStorage.getItem('aaet_files') || '[]');
+            const announcements = JSON.parse(localStorage.getItem('aaet_announcements') || '[]').filter(a => a.active);
+            const reviewers = JSON.parse(localStorage.getItem('aaet_reviewers') || '[]');
+            
+            document.getElementById('adminStudentCount').textContent = students.length;
+            document.getElementById('adminFileCount').textContent = files.length;
+            document.getElementById('adminAnnouncementCount').textContent = announcements.length;
+            document.getElementById('adminReviewerCount').textContent = reviewers.length;
+        }
+        
+        function showAddStudentModal() {
+            document.getElementById('addStudentModal').classList.add('active');
+        }
+        
+        function addStudent(e) {
+            e.preventDefault();
+            
+            const student = {
+                id: document.getElementById('newStudentId').value,
+                name: document.getElementById('newStudentName').value,
+                email: document.getElementById('newStudentEmail').value,
+                year: document.getElementById('newStudentYear').value,
+                password: document.getElementById('newStudentPassword').value
+            };
+            
+            const students = JSON.parse(localStorage.getItem('aaet_students') || '[]');
+            students.push(student);
+            localStorage.setItem('aaet_students', JSON.stringify(students));
+            
+            closeModal('addStudentModal');
+            loadStudentsTab();
+            showToast('Student added successfully!', 'success');
+            
+            // Reset form
+            e.target.reset();
+        }
+        
+        function loadStudentsTab() {
+            const students = JSON.parse(localStorage.getItem('aaet_students') || '[]');
+            const table = document.getElementById('studentsTable');
+            
+            table.innerHTML = students.map((student, index) => `
+                <tr>
+                    <td>${student.id}</td>
+                    <td>${student.name}</td>
+                    <td>${student.email}</td>
+                    <td>${student.year === '1' ? '1st Year' : '2nd Year'}</td>
+                    <td class="action-buttons">
+                        <button class="action-btn edit-btn" onclick="editStudent(${index})">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteStudent(${index})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function deleteStudent(index) {
+            if (confirm('Are you sure you want to delete this student?')) {
+                const students = JSON.parse(localStorage.getItem('aaet_students') || '[]');
+                students.splice(index, 1);
+                localStorage.setItem('aaet_students', JSON.stringify(students));
+                loadStudentsTab();
+                showToast('Student deleted successfully', 'success');
+            }
+        }
+        
+        function showAddAnnouncementModal() {
+            document.getElementById('addAnnouncementModal').classList.add('active');
+        }
+        
+        function addAnnouncement(e) {
+            e.preventDefault();
+            
+            const announcement = {
+                id: Date.now(),
+                title: document.getElementById('announcementTitle').value,
+                content: document.getElementById('announcementContent').value,
+                date: new Date().toISOString().split('T')[0],
+                active: true
+            };
+            
+            const announcements = JSON.parse(localStorage.getItem('aaet_announcements') || '[]');
+            announcements.push(announcement);
+            localStorage.setItem('aaet_announcements', JSON.stringify(announcements));
+            
+            closeModal('addAnnouncementModal');
+            loadAnnouncementsTab();
+            showToast('Announcement added successfully!', 'success');
+            
+            // Reset form
+            e.target.reset();
+        }
+        
+        function loadAnnouncementsTab() {
+            const announcements = JSON.parse(localStorage.getItem('aaet_announcements') || '[]');
+            const table = document.getElementById('announcementsTable');
+            
+            table.innerHTML = announcements.map((announcement, index) => `
+                <tr>
+                    <td>${formatDate(announcement.date)}</td>
+                    <td>${announcement.title}</td>
+                    <td>${announcement.content.substring(0, 50)}...</td>
+                    <td class="action-buttons">
+                        <button class="action-btn edit-btn" onclick="editAnnouncement(${index})">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteAnnouncement(${index})">Delete</button>
+                        <button class="action-btn" onclick="toggleAnnouncement(${index})" style="background:${announcement.active ? '#f44336' : '#4CAF50'}; color:white;">
+                            ${announcement.active ? 'Deactivate' : 'Activate'}
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function deleteAnnouncement(index) {
+            if (confirm('Are you sure you want to delete this announcement?')) {
+                const announcements = JSON.parse(localStorage.getItem('aaet_announcements') || '[]');
+                announcements.splice(index, 1);
+                localStorage.setItem('aaet_announcements', JSON.stringify(announcements));
+                loadAnnouncementsTab();
+                showToast('Announcement deleted successfully', 'success');
+            }
+        }
+        
+        function toggleAnnouncement(index) {
+            const announcements = JSON.parse(localStorage.getItem('aaet_announcements') || '[]');
+            announcements[index].active = !announcements[index].active;
+            localStorage.setItem('aaet_announcements', JSON.stringify(announcements));
+            loadAnnouncementsTab();
+            showToast('Announcement status updated', 'success');
+        }
+        
+        function showAddEventModal() {
+            document.getElementById('addEventModal').classList.add('active');
+        }
+        
+        function addEvent(e) {
+            e.preventDefault();
+            
+            const event = {
+                id: Date.now(),
+                title: document.getElementById('eventTitle').value,
+                date: document.getElementById('eventDate').value,
+                description: document.getElementById('eventDescription').value
+            };
+            
+            const events = JSON.parse(localStorage.getItem('aaet_events') || '[]');
+            events.push(event);
+            localStorage.setItem('aaet_events', JSON.stringify(events));
+            
+            closeModal('addEventModal');
+            loadEventsTab();
+            showToast('Event added successfully!', 'success');
+            
+            // Reset form
+            e.target.reset();
+        }
+        
+        function loadEventsTab() {
+            const events = JSON.parse(localStorage.getItem('aaet_events') || '[]');
+            const table = document.getElementById('eventsTable');
+            
+            table.innerHTML = events.map((event, index) => `
+                <tr>
+                    <td>${formatDate(event.date)}</td>
+                    <td>${event.title}</td>
+                    <td>${event.description.substring(0, 50)}...</td>
+                    <td class="action-buttons">
+                        <button class="action-btn edit-btn" onclick="editEvent(${index})">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteEvent(${index})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function deleteEvent(index) {
+            if (confirm('Are you sure you want to delete this event?')) {
+                const events = JSON.parse(localStorage.getItem('aaet_events') || '[]');
+                events.splice(index, 1);
+                localStorage.setItem('aaet_events', JSON.stringify(events));
+                loadEventsTab();
+                showToast('Event deleted successfully', 'success');
+            }
+        }
+        
+        function showAddFileModal() {
+            document.getElementById('addFileModal').classList.add('active');
+        }
+        
+        function addFile(e) {
+            e.preventDefault();
+            
+            const file = {
+                id: Date.now(),
+                name: document.getElementById('fileName').value,
+                type: document.getElementById('fileType').value,
+                url: document.getElementById('fileUrl').value,
+                description: document.getElementById('fileDescription').value,
+                date: new Date().toISOString().split('T')[0],
+                size: '2.4 MB'
+            };
+            
+            const files = JSON.parse(localStorage.getItem('aaet_files') || '[]');
+            files.push(file);
+            localStorage.setItem('aaet_files', JSON.stringify(files));
+            
+            closeModal('addFileModal');
+            loadFilesTab();
+            showToast('File added successfully!', 'success');
+            
+            // Reset form
+            e.target.reset();
+        }
+        
+        function loadFilesTab() {
+            const files = JSON.parse(localStorage.getItem('aaet_files') || '[]');
+            const table = document.getElementById('filesTable');
+            
+            table.innerHTML = files.map((file, index) => `
+                <tr>
+                    <td>${file.name}</td>
+                    <td>${file.type.toUpperCase()}</td>
+                    <td>${file.size}</td>
+                    <td>${formatDate(file.date)}</td>
+                    <td class="action-buttons">
+                        <button class="action-btn edit-btn" onclick="editFile(${index})">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteFile(${index})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function deleteFile(index) {
+            if (confirm('Are you sure you want to delete this file?')) {
+                const files = JSON.parse(localStorage.getItem('aaet_files') || '[]');
+                files.splice(index, 1);
+                localStorage.setItem('aaet_files', JSON.stringify(files));
+                loadFilesTab();
+                showToast('File deleted successfully', 'success');
+            }
+        }
+        
+        // ============ REVIEWER FUNCTIONS ============
+        function showAddReviewerModal() {
+            if (!isAdmin) {
+                showToast('Admin access required', 'error');
+                return;
+            }
+            document.getElementById('addReviewerModal').classList.add('active');
+        }
+        
+        function addReviewerLink(e) {
+            e.preventDefault();
+            
+            const reviewer = {
+                id: Date.now(),
+                title: document.getElementById('reviewerTitle').value,
+                url: document.getElementById('reviewerUrl').value,
+                category: document.getElementById('reviewerCategory').value,
+                description: document.getElementById('reviewerDescription').value
+            };
+            
+            const reviewers = JSON.parse(localStorage.getItem('aaet_reviewers') || '[]');
+            reviewers.push(reviewer);
+            localStorage.setItem('aaet_reviewers', JSON.stringify(reviewers));
+            
+            closeModal('addReviewerModal');
+            loadReviewersTab();
+            if (document.getElementById('reviewerPage').style.display !== 'none') {
+                loadReviewerPage();
+            }
+            showToast('Reviewer link added successfully!', 'success');
+            
+            // Reset form
+            e.target.reset();
+        }
+        
+        function loadReviewersTab() {
+            const reviewers = JSON.parse(localStorage.getItem('aaet_reviewers') || '[]');
+            const table = document.getElementById('reviewersTable');
+            
+            table.innerHTML = reviewers.map((reviewer, index) => `
+                <tr>
+                    <td>${reviewer.title}</td>
+                    <td><a href="${reviewer.url}" target="_blank">${reviewer.url.substring(0, 30)}...</a></td>
+                    <td>${reviewer.category.toUpperCase()}</td>
+                    <td>${reviewer.description.substring(0, 50)}...</td>
+                    <td class="action-buttons">
+                        <button class="action-btn edit-btn" onclick="editReviewer(${index})">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteReviewer(${index})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function deleteReviewer(index) {
+            if (confirm('Are you sure you want to delete this reviewer link?')) {
+                const reviewers = JSON.parse(localStorage.getItem('aaet_reviewers') || '[]');
+                reviewers.splice(index, 1);
+                localStorage.setItem('aaet_reviewers', JSON.stringify(reviewers));
+                loadReviewersTab();
+                if (document.getElementById('reviewerPage').style.display !== 'none') {
+                    loadReviewerPage();
+                }
+                showToast('Reviewer link deleted successfully', 'success');
+            }
+        }
+        
+        // ============ SITE SETTINGS ============
+        function loadSiteSettings() {
+            const settings = JSON.parse(localStorage.getItem('aaet_settings') || '{}');
+            
+            // Update display
+            document.getElementById('studentCount').textContent = settings.studentCount || '45';
+            document.getElementById('settingStudentCount').value = settings.studentCount || '45';
+            document.getElementById('settingCourseCount').value = settings.courseCount || '12';
+            document.getElementById('settingLabHours').value = settings.labHours || '500+';
+        }
+        
+        function saveSettings() {
+            const settings = {
+                studentCount: document.getElementById('settingStudentCount').value,
+                courseCount: document.getElementById('settingCourseCount').value,
+                labHours: document.getElementById('settingLabHours').value
+            };
+            
+            localStorage.setItem('aaet_settings', JSON.stringify(settings));
+            
+            // Update live display
+            document.getElementById('studentCount').textContent = settings.studentCount;
+            
+            showToast('Settings saved successfully!', 'success');
+        }
+        
+        // ============ DATA EXPORT/IMPORT ============
+        function exportData() {
+            const data = {
+                students: JSON.parse(localStorage.getItem('aaet_students') || '[]'),
+                announcements: JSON.parse(localStorage.getItem('aaet_announcements') || '[]'),
+                events: JSON.parse(localStorage.getItem('aaet_events') || '[]'),
+                files: JSON.parse(localStorage.getItem('aaet_files') || '[]'),
+                reviewers: JSON.parse(localStorage.getItem('aaet_reviewers') || '[]'),
+                settings: JSON.parse(localStorage.getItem('aaet_settings') || '{}'),
+                exportDate: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `aaet_backup_${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            
+            showToast('Data exported successfully!', 'success');
+        }
+        
+        function importData() {
+            document.getElementById('importFile').click();
+        }
+        
+        function handleImport(files) {
+            if (!files || files.length === 0) return;
+            
+            const file = files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    if (data.students) localStorage.setItem('aaet_students', JSON.stringify(data.students));
+                    if (data.announcements) localStorage.setItem('aaet_announcements', JSON.stringify(data.announcements));
+                    if (data.events) localStorage.setItem('aaet_events', JSON.stringify(data.events));
+                    if (data.files) localStorage.setItem('aaet_files', JSON.stringify(data.files));
+                    if (data.reviewers) localStorage.setItem('aaet_reviewers', JSON.stringify(data.reviewers));
+                    if (data.settings) localStorage.setItem('aaet_settings', JSON.stringify(data.settings));
+                    
+                    // Reload all data
+                    loadAdminDashboard();
+                    loadStudentsTab();
+                    loadAnnouncementsTab();
+                    loadEventsTab();
+                    loadFilesTab();
+                    loadReviewersTab();
+                    loadSiteSettings();
+                    
+                    showToast('Data imported successfully!', 'success');
+                } catch (error) {
+                    showToast('Invalid backup file', 'error');
+                }
+            };
+            
+            reader.readAsText(file);
+        }
+        
+        // ============ UTILITY FUNCTIONS ============
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+        
+        // ============ INITIALIZE ============
+        window.addEventListener('DOMContentLoaded', () => {
+            initializeData();
+            loadHomePage();
+            showPage('home');
+            
+            // Check for remember me
+            const remember = localStorage.getItem('rememberStudent');
+            if (remember) {
+                const student = JSON.parse(remember);
+                const students = JSON.parse(localStorage.getItem('aaet_students') || '[]');
+                const found = students.find(s => s.id === student.id && s.password === student.password);
+                if (found) {
+                    currentUser = found;
+                    updateUIForStudent();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
